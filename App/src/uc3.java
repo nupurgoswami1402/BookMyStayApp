@@ -3,7 +3,7 @@ import java.util.Map;
 
 class RoomInventory {
 
-    private HashMap<String, Integer> inventory;
+    private final HashMap<String, Integer> inventory;
 
     public RoomInventory() {
         inventory = new HashMap<>();
@@ -21,6 +21,10 @@ class RoomInventory {
         for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
             System.out.println(entry.getKey() + " Available: " + entry.getValue());
         }
+    }
+
+    public void decreaseRoom(String type) {
+
     }
 }
 

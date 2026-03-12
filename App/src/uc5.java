@@ -1,23 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Reservation {
-
-    private String guestName;
-    private String roomType;
-
-    public Reservation(String guestName, String roomType) {
-        this.guestName = guestName;
-        this.roomType = roomType;
-    }
-
-    public String getGuestName() {
-        return guestName;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
+record usecase5(String guestName, String roomType) {
 
     public void displayReservation() {
         System.out.println("Guest: " + guestName + " | Requested Room: " + roomType);
@@ -26,7 +10,7 @@ class Reservation {
 
 class BookingRequestQueue {
 
-    private Queue<Reservation> queue;
+    private final Queue<Reservation> queue;
 
     public BookingRequestQueue() {
         queue = new LinkedList<>();
@@ -42,6 +26,14 @@ class BookingRequestQueue {
         for (Reservation r : queue) {
             r.displayReservation();
         }
+    }
+
+    public Reservation getNextRequest() {
+        return queue.poll();
+    }
+
+    public boolean hasRequests() {
+        return false;
     }
 }
 
