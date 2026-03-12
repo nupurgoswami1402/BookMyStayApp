@@ -26,6 +26,9 @@ class RoomInventory {
     public void decreaseRoom(String type) {
 
     }
+
+    public void bookRoom(String roomType) {
+    }
 }
 
 public class uc3 {
