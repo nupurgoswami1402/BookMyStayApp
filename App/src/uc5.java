@@ -18,7 +18,7 @@ class BookingRequestQueue {
 
     public void addRequest(Reservation reservation) {
         queue.offer(reservation);
-        System.out.println("Booking request added for " + reservation.getGuestName());
+        System.out.println("Booking request added for " + reservation.guestName());
     }
 
     public void displayQueue() {
@@ -47,9 +47,9 @@ public class uc5 {
 
         BookingRequestQueue requestQueue = new BookingRequestQueue();
 
-        Reservation r1 = new Reservation("Alice", "Single Room");
-        Reservation r2 = new Reservation("Bob", "Double Room");
-        Reservation r3 = new Reservation("Charlie", "Suite Room");
+        Reservation r1 = new Reservation("Alice", "Single Room", "Single Room");
+        Reservation r2 = new Reservation("Bob", "Double Room", "Single Room");
+        Reservation r3 = new Reservation("Charlie", "Suite Room", "Single Room");
 
         requestQueue.addRequest(r1);
         requestQueue.addRequest(r2);
