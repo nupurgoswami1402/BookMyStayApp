@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-class RoomInventory {
+public class RoomInventory {
 
     private final HashMap<String, Integer> inventory;
 
