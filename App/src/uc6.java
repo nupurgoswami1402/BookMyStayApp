@@ -1,22 +1,6 @@
 import java.util.*;
 
-class Reservation {
-
-    private final String guestName;
-    private final String roomType;
-
-    public Reservation(String guestName, String roomType) {
-        this.guestName = guestName;
-        this.roomType = roomType;
-    }
-
-    public String getGuestName() {
-        return guestName;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
+record Reservation(String guestName, String roomType, String singleRoom) {
 
     public void displayReservation() {
     }
@@ -60,7 +44,7 @@ class BookingQueue {
 
     public void addRequest(Reservation r) {
         queue.offer(r);
-        System.out.println("Booking request added for " + r.getGuestName());
+        System.out.println("Booking request added for " + r.guestName());
     }
 
     public Reservation getNextRequest() {
@@ -83,7 +67,7 @@ class RoomAllocationService {
         while (queue.hasRequests()) {
 
             Reservation r = queue.getNextRequest();
-            String type = r.getRoomType();
+            String type = r.roomType();
 
             if (inventory.getAvailability(type) > 0) {
 
@@ -96,14 +80,14 @@ class RoomAllocationService {
                 inventory.decreaseRoom(type);
 
                 System.out.println("\nReservation Confirmed");
-                System.out.println("Guest: " + r.getGuestName());
+                System.out.println("Guest: " + r.guestName());
                 System.out.println("Room Type: " + type);
                 System.out.println("Allocated Room ID: " + roomId);
 
             } else {
 
                 System.out.println("\nNo rooms available for " + type +
-                        " (Guest: " + r.getGuestName() + ")");
+                        " (Guest: " + r.guestName() + ")");
             }
         }
     }
@@ -120,11 +104,11 @@ public class uc6 {
         RoomInventory inventory = new RoomInventory();
         BookingRequestQueue queue = new BookingRequestQueue();
 
-        queue.addRequest(new Reservation("Alice", "Single Room"));
-        queue.addRequest(new Reservation("Bob", "Single Room"));
-        queue.addRequest(new Reservation("Charlie", "Double Room"));
-        queue.addRequest(new Reservation("David", "Suite Room"));
-        queue.addRequest(new Reservation("Eva", "Suite Room"));
+        queue.addRequest(new Reservation("Alice", "Single Room", "Single Room"));
+        queue.addRequest(new Reservation("Bob", "Single Room", "Single Room"));
+        queue.addRequest(new Reservation("Charlie", "Double Room", "Single Room"));
+        queue.addRequest(new Reservation("David", "Suite Room", "Single Room"));
+        queue.addRequest(new Reservation("Eva", "Suite Room", "Single Room"));
 
         RoomAllocationService service = new RoomAllocationService();
         service.processBookings(queue, inventory);
